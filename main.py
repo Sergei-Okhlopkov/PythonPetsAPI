@@ -24,6 +24,7 @@ def create_pet(pet_create: PetCreate):
               age=row[2],
               type=row[3],
               created_at=row[4])
+
     conn.close()
     result = {
         "id": pet.id,
@@ -94,6 +95,3 @@ def delete_pets(pets: DeletePets):
     }
     return result
 
-
-if __name__ == "__main__":
-    uvicorn.run(app, host="localhost", port=3000)
