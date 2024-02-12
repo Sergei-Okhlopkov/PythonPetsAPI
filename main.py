@@ -1,12 +1,7 @@
 import sqlite3
-import uvicorn
 
 from fastapi import FastAPI
-
-from db import create_db
-from db.models import Pet, PetCreate, DeletePets
-
-create_db()
+from db.pet_model import Pet, PetCreate, DeletePets
 
 app = FastAPI(title="PetsAPI")
 

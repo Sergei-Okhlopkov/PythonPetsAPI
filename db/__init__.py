@@ -1,15 +1,9 @@
-import sqlite3
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy.ext.declarative import declarative_base
 
+DATABASE_URL = "sqlite:///pets.db"
 
-def create_db():
-    conn = sqlite3.connect('pets.db')
-    c = conn.cursor()
-    c.execute('''CREATE TABLE IF NOT EXISTS pets (
-                 id INTEGER PRIMARY KEY AUTOINCREMENT,
-                 name TEXT,
-                 age INT,
-                 type TEXT,
-                 created_at TEXT DEFAULT (strftime('%Y-%m-%dT%H:%M:%S',  datetime('now', '3 hours')))
-                 )''')
-    conn.commit()
-    conn.close()
+engine = create_engine(DATABASE_URL)
+SessionLocal = sessionmaker(bind=engine)
+Base = declarative_base()
