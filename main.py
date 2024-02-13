@@ -1,4 +1,6 @@
 from fastapi import FastAPI
+from starlette.responses import RedirectResponse
+
 from db.pet_model import PetCreate, DeletePets
 from db.queries import get_pets_query, delete_pets_query, create_pet_query
 
@@ -9,6 +11,9 @@ app = FastAPI(title="PetsAPI")
 def create_pet(pet_create: PetCreate):
     return create_pet_query(pet_create)
 
+@app.get("/")
+def default_page():
+    return RedirectResponse("/docs")
 
 @app.get("/pets/{limit}")
 def get_pets_limit(limit):
