@@ -1,9 +1,11 @@
 from fastapi import FastAPI
 from starlette.responses import RedirectResponse
 
+from db import Base, engine
 from db.pet_model import PetCreate, DeletePets
 from db.queries import get_pets_query, delete_pets_query, create_pet_query
 
+Base.metadata.create_all(bind=engine)
 app = FastAPI(title="PetsAPI")
 
 
